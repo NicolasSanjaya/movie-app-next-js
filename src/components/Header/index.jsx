@@ -5,20 +5,20 @@ import { useRouter } from "next/router";
 const Header = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
-  const [stateUsername, setStateUsername] = useState(false)
+  const [stateUsername, setStateUsername] = useState(false);
   const [data, setData] = useState({});
   useEffect(() => {
     const datas = JSON.parse(localStorage.getItem("data"));
     datas && setUsername(datas.username);
     datas && setData(datas);
-    datas && setStateUsername(true)
+    datas && setStateUsername(true);
   }, []);
 
   const handleClick = () => {
     if (data) {
       setData({});
       setUsername("");
-      router.push('/')
+      router.push("/");
     }
     if (username === "") {
       router.push("/auth/login");
@@ -35,7 +35,8 @@ const Header = () => {
           </div>
           <div>
             <h3 className="text-white font-bold text-2xl text-center ">
-              {router.pathname === "/" && username === "" && "Refresh To Load Page"}{username && "Welcome :"} {username}
+              {router.pathname === "/" && stateUsername === "" && "Refresh To Load Page"}
+              {username && "Welcome :"} {username}
             </h3>
             ;
           </div>
