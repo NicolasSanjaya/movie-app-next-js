@@ -18,6 +18,7 @@ const Header = () => {
     if (data) {
       setData({});
       setUsername("");
+      router.push('/')
     }
     if (username === "") {
       router.push("/auth/login");
