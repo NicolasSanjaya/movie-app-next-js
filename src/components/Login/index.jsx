@@ -14,18 +14,26 @@ const Login = () => {
     e.preventDefault();
     const localData = localStorage.getItem("data");
     const datas = JSON.parse(localData);
-    if (data.email === datas.email && data.password === datas.password) {
+    if (datas) {
+      if (data.email === datas.email && data.password === datas.password) {
+        Swal.fire({
+          title: "Login Sukses",
+          icon: "success",
+          timer: 1500,
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 1700);
+      } else {
+        Swal.fire({
+          title: "Data Salah",
+          icon: "error",
+        });
+      }
+    }else{
       Swal.fire({
-        title: "Login Sukses",
-        icon: "success",
-        timer: 1500,
-      });
-      setTimeout(() => {
-        router.push("/");
-      }, 1700);
-    } else {
-      Swal.fire({
-        title: "Data Salah",
+        title: "Belum ada data",
+        text: "Silahkan register terlebih dahulu",
         icon: "error",
       });
     }
@@ -40,7 +48,7 @@ const Login = () => {
 
   useEffect(() => {
     if (data.username && router.pathname === "/auth/login") {
-      router.push('/')
+      router.push("/");
     }
   }, []);
 

@@ -5,17 +5,14 @@ import { useRouter } from "next/router";
 const Header = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
+  const [stateUsername, setStateUsername] = useState(false)
   const [data, setData] = useState({});
   useEffect(() => {
-    "use client";
     const datas = JSON.parse(localStorage.getItem("data"));
     datas && setUsername(datas.username);
     datas && setData(datas);
+    datas && setStateUsername(true)
   }, []);
-
-  useEffect(() => {
-    console.log(router);
-  }, [username]);
 
   const handleClick = () => {
     if (data) {
@@ -36,7 +33,10 @@ const Header = () => {
             <img src="/netflix.png" alt="" className="w-8 md:w-12 cursor-pointer" onClick={() => router.push("/")} />
           </div>
           <div>
-            <h3 className="text-white font-bold text-2xl text-center ">Welcome : {username}</h3>;
+            <h3 className="text-white font-bold text-2xl text-center ">
+              {router.pathname === "/" && username === "" && "Refresh To Load Page"}{username && "Welcome :"} {username}
+            </h3>
+            ;
           </div>
           <div>
             <button className="px-6 py-2 md:py-3 md:px-12 bg-red-600 text-white drop-shadow-lg rounded-lg hover:bg-red-800 text-lg font-semibold" onClick={handleClick}>
