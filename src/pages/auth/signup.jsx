@@ -17,8 +17,10 @@ const SignUp = () => {
   useEffect(() => {
     const localData = localStorage.getItem("data");
     const datas = JSON.parse(localData);
-    if(datas.username && router.pathname === "/auth/signup"){
-      router.push('/')
+    if (datas) {
+      if (datas.username && router.pathname === "/auth/signup") {
+        router.push("/");
+      }
     }
   }, []);
 
@@ -38,7 +40,7 @@ const SignUp = () => {
         icon: "success",
         timer: 1500,
       });
-      localStorage.setItem("data", JSON.stringify(datas))
+      localStorage.setItem("data", JSON.stringify(datas));
       setDatas({
         email: "",
         username: "",
