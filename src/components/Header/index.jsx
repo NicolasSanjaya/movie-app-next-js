@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const router = useRouter();
+  const router2 = useRouter();
   const [username, setUsername] = useState("");
   const [stateUsername, setStateUsername] = useState(false);
   const [data, setData] = useState({});
@@ -18,6 +20,7 @@ const Header = () => {
       setData({});
       setUsername("");
       router.push("/");
+      router2.refresh();
     }
     if (username === "") {
       router.push("/auth/login");
@@ -34,8 +37,8 @@ const Header = () => {
           </div>
           <div>
             <h3 className="text-white font-bold text-2xl text-center ">
-              {router.pathname === "/" && stateUsername === "" && "Refresh To Load Page"}
-              {stateUsername && "Welcome :"} {username}
+              {router.pathname === "/" && stateUsername === "" && username === "" && "Refresh To Load Page"}
+              {!stateUsername && username && "Welcome :"} {username}
             </h3>
             ;
           </div>
