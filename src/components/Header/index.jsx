@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
@@ -36,7 +35,7 @@ const Header = () => {
           <div>
             <h3 className="text-white font-bold text-2xl text-center ">
               {router.pathname === "/" && stateUsername === "" && "Refresh To Load Page"}
-              {username && "Welcome :"} {username}
+              {stateUsername && "Welcome :"} {username}
             </h3>
             ;
           </div>

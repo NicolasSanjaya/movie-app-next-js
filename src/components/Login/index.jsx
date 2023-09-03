@@ -30,7 +30,7 @@ const Login = () => {
           icon: "error",
         });
       }
-    }else{
+    } else {
       Swal.fire({
         title: "Belum ada data",
         text: "Silahkan register terlebih dahulu",
